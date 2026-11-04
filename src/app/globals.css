@@ -1,8 +1,37 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/* StudioSpace design tokens                                           */
+/* ------------------------------------------------------------------ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fbfbf9;
+  --foreground: #0b0b0f;
+}
+
+@theme {
+  /* Ink — the neutral scale used by the chrome */
+  --color-ink-950: #0b0b0f;
+  --color-ink-900: #131318;
+  --color-ink-800: #1c1c23;
+  --color-ink-700: #2e2e37;
+  --color-ink-600: #4a4a55;
+  --color-ink-500: #6b6b78;
+  --color-ink-400: #9a9aa6;
+  --color-ink-300: #c6c6cf;
+  --color-ink-200: #e3e3e9;
+  --color-ink-100: #f1f1f4;
+
+  /* Surfaces */
+  --color-paper: #fbfbf9;
+  --color-paper-warm: #f4f3ee;
+
+  /* Spotlight — the tungsten accent pulled from a studio lamp */
+  --color-spotlight: #ffb020;
+  --color-spotlight-deep: #b4530a;
+
+  /* Gel — secondary wash used for depth in dark surfaces */
+  --color-gel: #7c5cff;
 }
 
 @theme inline {
@@ -12,15 +41,44 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
+html {
+  /* The header is sticky (36px ribbon + 64px bar on large screens) */
+  scroll-padding-top: 6.75rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(255, 176, 32, 0.32);
+  color: #0b0b0f;
+}
+
+/* ------------------------------------------------------------------ */
+/* Utilities                                                           */
+/* ------------------------------------------------------------------ */
+
+/* Small dropdown entrance used by the account menu. */
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.menu-in {
+  animation: menu-in 0.16s ease-out both;
 }

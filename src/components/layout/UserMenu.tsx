@@ -96,7 +96,7 @@ export function AccountLinks({ onNavigate }: { onNavigate?: () => void }) {
       <button
         type="button"
         onClick={() => {
-          signOut();
+          void signOut();
           onNavigate?.();
         }}
         className="mt-1 flex w-full items-center gap-3 rounded-xl border-t border-ink-950/[0.08] px-3 pt-3 pb-2.5 text-[15px] font-medium text-rose-600 transition-colors hover:bg-rose-50"
@@ -204,7 +204,7 @@ export function UserMenu() {
                   aria-hidden
                   className="size-1.5 rounded-full bg-spotlight shadow-[0_0_6px_rgba(255,176,32,0.9)]"
                 />
-                Studio host
+                {user.role === "host" ? "Studio host" : "Studio member"}
               </span>
             </div>
           </div>

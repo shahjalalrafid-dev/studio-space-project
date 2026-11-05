@@ -71,14 +71,88 @@ export const FOOTER_QUICK_LINKS: NavLink[] = [
   { label: "List Your Studio", href: "/studios/new" },
 ];
 
-export const FOOTER_CATEGORIES: NavLink[] = [
-  { label: "Photography Cyc Walls", href: "/studios?category=cyc-wall" },
-  { label: "Cinema Sound Stages", href: "/studios?category=sound-stage" },
-  { label: "Podcast Lounges", href: "/studios?category=podcast-lounge" },
-  { label: "Music Recording Suites", href: "/studios?category=recording-suite" },
-  { label: "Art Workshops", href: "/studios?category=art-workshop" },
-  { label: "Green Screen Rooms", href: "/studios?category=green-screen" },
+/* ------------------------------------------------------------------ */
+/* Studio categories — the filter vocabulary shared by the home page,  */
+/* the /studios listing, the footer and the seeded MongoDB documents.  */
+/* ------------------------------------------------------------------ */
+
+export type StudioCategory = {
+  /** Stored on the `category` field of every studio document. */
+  slug: string;
+  label: string;
+  blurb: string;
+  /** Card artwork (Wikimedia Commons, hot-linked at 1920px). */
+  image: string;
+  /** Shown in the home page's "Browse by category" rail. */
+  featured: boolean;
+};
+
+export const STUDIO_CATEGORIES: StudioCategory[] = [
+  {
+    slug: "photo-studio",
+    label: "Photo Studios",
+    blurb: "Cyc walls, infinity bays and daylight lofts",
+    image:
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Studio_Bts_%28140066927%29.jpeg/1920px-Studio_Bts_%28140066927%29.jpeg",
+    featured: true,
+  },
+  {
+    slug: "sound-stage",
+    label: "Sound Stages",
+    blurb: "Cinema floors with grid access and blackout",
+    image:
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Sound_stage_4%2C_Shinfield_Studios.jpg/1920px-Sound_stage_4%2C_Shinfield_Studios.jpg",
+    featured: true,
+  },
+  {
+    slug: "podcast-room",
+    label: "Podcast Rooms",
+    blurb: "Treated booths, mic-ready and stream-ready",
+    image:
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/24/Podcasting-wcwc.jpg/1920px-Podcasting-wcwc.jpg",
+    featured: true,
+  },
+  {
+    slug: "music-suite",
+    label: "Music Suites",
+    blurb: "Control rooms, live rooms and drum booths",
+    image:
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Neve_81_Series_Mixing_Console.jpg/1920px-Neve_81_Series_Mixing_Console.jpg",
+    featured: true,
+  },
+  {
+    slug: "art-workshop",
+    label: "Art Workshops",
+    blurb: "Wet studios, kilns and wall-to-wall easels",
+    image:
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Workshop_of_Temo_Svirely_2013.jpg/1920px-Workshop_of_Temo_Svirely_2013.jpg",
+    featured: true,
+  },
+  {
+    slug: "green-screen",
+    label: "Green Screen Rooms",
+    blurb: "Chroma bays with even, wash-free lighting",
+    image:
+      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1a/Green_screen_studio_%2825113564876%29.jpg/1920px-Green_screen_studio_%2825113564876%29.jpg",
+    featured: false,
+  },
 ];
+
+/** Look-up used by cards and the /studios filter rail. */
+export const CATEGORY_BY_SLUG = new Map(
+  STUDIO_CATEGORIES.map((category) => [category.slug, category]),
+);
+
+export function categoryLabel(slug: string): string {
+  return CATEGORY_BY_SLUG.get(slug)?.label ?? slug;
+}
+
+export const FOOTER_CATEGORIES: NavLink[] = STUDIO_CATEGORIES.map(
+  (category) => ({
+    label: category.label,
+    href: `/studios?category=${category.slug}`,
+  }),
+);
 
 export const FOOTER_HOST_LINKS: NavLink[] = [
   { label: "Become a Host", href: "/become-a-host" },

@@ -82,6 +82,218 @@ export function MailIcon(props: IconProps) {
   );
 }
 
+export function LockIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <rect x="4" y="10.5" width="16" height="10.5" rx="2.5" />
+      <path d="M7.75 10.5V7.75a4.25 4.25 0 0 1 8.5 0v2.75" />
+      <circle cx="12" cy="15.75" r="1.15" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function EyeIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <path d="M2.5 12S6 5.75 12 5.75 21.5 12 21.5 12 18 18.25 12 18.25 2.5 12 2.5 12Z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  );
+}
+
+export function EyeOffIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <path d="M3.2 3.2 20.8 20.8" />
+      <path d="M10.6 6.1A8.9 8.9 0 0 1 12 6c6 0 9.5 6 9.5 6a16.6 16.6 0 0 1-3.1 3.7" />
+      <path d="M6.4 7.9A16.4 16.4 0 0 0 2.5 12s3.5 6 9.5 6a9.4 9.4 0 0 0 3.6-.7" />
+      <path d="M9.9 10.2a3 3 0 0 0 4.1 4.2" />
+    </svg>
+  );
+}
+
+export function UserIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <circle cx="12" cy="8.2" r="3.7" />
+      <path d="M4.5 20.3a7.5 7.5 0 0 1 15 0" />
+    </svg>
+  );
+}
+
+export function ImageIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <rect x="3" y="4.5" width="18" height="15" rx="2.5" />
+      <circle cx="8.6" cy="9.6" r="1.6" />
+      <path d="m4 17.2 4.6-4.4a2 2 0 0 1 2.7-.05L16 16.6" />
+      <path d="m13.6 14.4 1.7-1.6a2 2 0 0 1 2.7-.03L20 14.4" />
+    </svg>
+  );
+}
+
+export function CheckIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={2} {...props}>
+      <path d="m5 12.6 4.5 4.4L19 7.5" />
+    </svg>
+  );
+}
+
+export function InfoIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <circle cx="12" cy="12" r="9.2" />
+      <path d="M12 11v5.4" />
+      <circle cx="12" cy="7.9" r="1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+/** Google "G" — multi-colour brand mark, so it keeps its official palette. */
+export function GoogleIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" aria-hidden {...props}>
+      <path
+        fill="#4285F4"
+        d="M23.49 12.27c0-.79-.07-1.54-.2-2.27H12v4.51h6.47a5.54 5.54 0 0 1-2.4 3.63v3.02h3.88c2.27-2.09 3.54-5.17 3.54-8.89Z"
+      />
+      <path
+        fill="#34A853"
+        d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.01c-1.08.72-2.45 1.16-4.05 1.16-3.13 0-5.78-2.11-6.73-4.96H1.28v3.09A11.99 11.99 0 0 0 12 24Z"
+      />
+      <path
+        fill="#FBBC05"
+        d="M5.27 14.28a7.2 7.2 0 0 1 0-4.56V6.63H1.28a12 12 0 0 0 0 10.74l3.99-3.09Z"
+      />
+      <path
+        fill="#EA4335"
+        d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.7 0 3.99 2.47 1.28 6.63l3.99 3.09C6.22 6.86 8.87 4.75 12 4.75Z"
+      />
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Marketplace — cards, workflow steps and host assurances             */
+/* ------------------------------------------------------------------ */
+
+export function MapPinIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <path d="M12 21c4.2-4.1 7-7.3 7-10.6a7 7 0 1 0-14 0C5 13.7 7.8 16.9 12 21Z" />
+      <circle cx="12" cy="10.3" r="2.6" />
+    </svg>
+  );
+}
+
+export function StarIcon(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path d="M12 2.6a.9.9 0 0 1 .83.55l2.2 4.5 4.97.72a.9.9 0 0 1 .5 1.54l-3.6 3.5.85 4.95a.9.9 0 0 1-1.31.95L12 17.03l-4.44 2.33a.9.9 0 0 1-1.31-.95l.85-4.95-3.6-3.5a.9.9 0 0 1 .5-1.54l4.97-.72 2.2-4.5A.9.9 0 0 1 12 2.6Z" />
+    </svg>
+  );
+}
+
+export function ArrowUpRightIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.8} {...props}>
+      <path d="M7 17 17 7" />
+      <path d="M8.5 7H17v8.5" />
+    </svg>
+  );
+}
+
+export function ChevronLeftIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.9} {...props}>
+      <path d="m14.5 5.5-6 6.5 6 6.5" />
+    </svg>
+  );
+}
+
+export function ChevronRightIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.9} {...props}>
+      <path d="m9.5 5.5 6 6.5-6 6.5" />
+    </svg>
+  );
+}
+
+export function SearchIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.7} {...props}>
+      <circle cx="11" cy="11" r="6.5" />
+      <path d="m16 16 4.5 4.5" />
+    </svg>
+  );
+}
+
+export function ClockIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.7} {...props}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7.4V12l3.2 2" />
+    </svg>
+  );
+}
+
+export function BoltIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <path d="M13.4 2.5 4.8 13.4h6.1l-.9 8.1 8.7-11h-6.1l.8-8Z" />
+    </svg>
+  );
+}
+
+export function CameraIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <path d="M3 8.6a2 2 0 0 1 2-2h1.9l1.2-2h5.8l1.2 2H19a2 2 0 0 1 2 2v8.8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
+      <circle cx="12" cy="12.8" r="3.4" />
+    </svg>
+  );
+}
+
+export function ShieldIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <path d="M12 2.8 4.8 5.6v5.9c0 4.3 2.9 8.2 7.2 9.7 4.3-1.5 7.2-5.4 7.2-9.7V5.6Z" />
+      <path d="m8.8 12.1 2.3 2.3 4.1-4.4" />
+    </svg>
+  );
+}
+
+export function BadgeCheckIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <path d="m12 2.9 2.2 1.7 2.7-.3 1 2.6 2.5 1.2-.7 2.7.7 2.7-2.5 1.2-1 2.6-2.7-.3L12 21.1l-2.2-1.7-2.7.3-1-2.6-2.5-1.2.7-2.7-.7-2.7 2.5-1.2 1-2.6 2.7.3Z" />
+      <path d="m9.2 12.2 2 2 3.6-3.9" />
+    </svg>
+  );
+}
+
+export function ToolIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <path d="M14.8 6.2a3.9 3.9 0 0 1 5.1-3.7l-2.5 2.5.7 3.1 3.1.7 2.5-2.5" />
+      <path d="M14.3 9.7 4.6 19.4a2 2 0 0 1-2.8-2.8l9.7-9.7" />
+      <path d="m13.2 10.8 2.6 2.6" />
+    </svg>
+  );
+}
+
+export function SupportIcon(props: IconProps) {
+  return (
+    <svg {...stroke} strokeWidth={1.6} {...props}>
+      <path d="M4.2 14.5v-2.7a7.8 7.8 0 0 1 15.6 0v2.7" />
+      <path d="M4.2 13.6h1.9a1.3 1.3 0 0 1 1.3 1.3v3.4a1.3 1.3 0 0 1-1.3 1.3H5.5a1.3 1.3 0 0 1-1.3-1.3Z" />
+      <path d="M19.8 13.6h-1.9a1.3 1.3 0 0 0-1.3 1.3v3.4a1.3 1.3 0 0 0 1.3 1.3h.6a1.3 1.3 0 0 0 1.3-1.3Z" />
+      <path d="M19.8 18.4v.6a2.4 2.4 0 0 1-2.4 2.4h-3" />
+    </svg>
+  );
+}
+
 /* ------------------------------------------------------------------ */
 /* Account menu                                                        */
 /* ------------------------------------------------------------------ */

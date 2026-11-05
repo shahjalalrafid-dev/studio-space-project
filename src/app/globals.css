@@ -82,3 +82,36 @@ body {
 .menu-in {
   animation: menu-in 0.16s ease-out both;
 }
+
+/* ------------------------------------------------------------------ */
+/* Hero slider (Swiper.js)                                            */
+/* ------------------------------------------------------------------ */
+
+.hero-swiper {
+  --swiper-wrapper-transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.hero-swiper .swiper-slide {
+  overflow: hidden;
+}
+
+/* Autoplay progress: one bar fills for the 6s each slide is on screen. */
+@keyframes hero-bullet-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.hero-bullet-fill {
+  animation: hero-bullet-fill 6s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bullet-fill {
+    animation: none;
+    width: 100%;
+  }
+}

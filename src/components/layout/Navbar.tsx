@@ -19,7 +19,7 @@ import { isActivePath, MAIN_NAV, SITE } from "@/lib/site";
  */
 export function Navbar() {
   const pathname = usePathname();
-  const { isAuthenticated, user, signIn } = useAuth();
+  const { isAuthenticated, isPending, user } = useAuth();
 
   const [sheetOpen, setSheetOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -112,7 +112,20 @@ export function Navbar() {
 
           {/* actions */}
           <div className="flex shrink-0 items-center gap-2 sm:gap-2.5">
-            {isAuthenticated ? (
+            {isPending ? (
+              /* Session still resolving — keep the header quiet instead of
+                 flashing guest buttons to a signed-in member. */
+              <>
+                <span
+                  aria-hidden
+                  className="hidden h-10 w-20 animate-pulse rounded-full bg-ink-950/[0.06] sm:inline-block"
+                />
+                <span
+                  aria-hidden
+                  className="hidden h-10 w-28 animate-pulse rounded-full bg-ink-950/[0.06] sm:inline-block"
+                />
+              </>
+            ) : isAuthenticated ? (
               <>
                 <Link
                   href="/studios/new"
@@ -216,16 +229,13 @@ export function Navbar() {
                 </>
               ) : (
                 <div className="flex flex-col gap-2.5">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      signIn();
-                      setSheetOpen(false);
-                    }}
-                    className="h-11 rounded-full bg-spotlight text-[15px] font-semibold text-ink-950 transition-colors hover:bg-[#FFC24D]"
+                  <Link
+                    href="/login"
+                    onClick={() => setSheetOpen(false)}
+                    className="grid h-11 place-items-center rounded-full bg-spotlight text-[15px] font-semibold text-ink-950 transition-colors hover:bg-[#FFC24D]"
                   >
                     Log in
-                  </button>
+                  </Link>
                   <Link
                     href="/register"
                     onClick={() => setSheetOpen(false)}

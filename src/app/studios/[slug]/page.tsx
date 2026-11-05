@@ -7,7 +7,7 @@ import { ArrowRightIcon, MapPinIcon, StarIcon } from "@/components/icons";
 import { StudioCard } from "@/components/studios/StudioCard";
 import { RequestBookingButton } from "@/components/studios/RequestBookingButton";
 import { categoryLabel } from "@/lib/site";
-import { getStudioBySlug, getStudios } from "@/lib/studios";
+// import { getStudioBySlug, getStudios } from "@/lib/studios";
 
 export const dynamic = "force-dynamic";
 

@@ -28,6 +28,19 @@ const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
 const URL_PATTERN = /^https?:\/\/\S+$/i;
 
 /**
+ * Read the PrivateRoute return path straight from the URL when it is needed
+ * (form submit, OAuth start, redirect). `window` is client-only, so this
+ * stays out of render — no state, no effect, no Suspense wrapper. Same-site
+ * paths only, so a tampered `?next=` can't bounce members off-site.
+ */
+function currentNextPath(): string | null {
+  if (typeof window === "undefined") return null;
+  const raw = new URLSearchParams(window.location.search).get("next");
+  if (!raw || !raw.startsWith("/") || raw.startsWith("//")) return null;
+  return raw;
+}
+
+/**
  * Registration form.
  *
  *  · full client-side validation (required fields + the assignment's
@@ -48,9 +61,10 @@ export function RegisterView() {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState<"form" | "google" | null>(null);
 
-  // Already signed in? The form has nothing left to do — go home.
+  // Already signed in? The form has nothing left to do — go back to where
+  // the visitor was headed (or home).
   useEffect(() => {
-    if (!isPending && isAuthenticated) router.replace("/");
+    if (!isPending && isAuthenticated) router.replace(currentNextPath() ?? "/");
   }, [isPending, isAuthenticated, router]);
 
   const previewSource = URL_PATTERN.test(image.trim()) ? image.trim() : null;
@@ -115,7 +129,8 @@ export function RegisterView() {
       return;
     }
 
-    router.push("/login");
+    const next = currentNextPath();
+    router.push(next ? `/login?next=${encodeURIComponent(next)}` : "/login");
   }
 
   async function onGoogle() {
@@ -123,7 +138,7 @@ export function RegisterView() {
     setError(null);
     setBusy("google");
 
-    const result = await signInWithGoogle();
+    const result = await signInWithGoogle(currentNextPath() ?? "/");
     if (!result.ok) {
       setBusy(null);
       setError(result.error);

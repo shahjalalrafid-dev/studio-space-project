@@ -27,33 +27,27 @@ export type AccountLink = NavLink & {
 export const MAIN_NAV: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Explore Studios", href: "/studios" },
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "About Us", href: "/about" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "About Us", href: "/#about" },
 ];
 
 /** Signed-in account menu — shown in the avatar dropdown and the mobile sheet. */
 export const ACCOUNT_LINKS: AccountLink[] = [
   {
-    label: "Dashboard",
-    href: "/dashboard",
-    icon: "dashboard",
-    hint: "Overview & activity",
-  },
-  {
-    label: "Add New Studio",
-    href: "/studios/new",
-    icon: "studio-add",
-    hint: "Publish a space",
-  },
-  {
     label: "My Studio Listings",
-    href: "/dashboard/listings",
+    href: "/my-listings",
     icon: "studio",
     hint: "Manage your spaces",
   },
   {
+    label: "Add New Studio",
+    href: "/add-studio",
+    icon: "studio-add",
+    hint: "Publish a space",
+  },
+  {
     label: "My Bookings",
-    href: "/dashboard/bookings",
+    href: "/my-bookings",
     icon: "calendar",
     hint: "Upcoming & past slots",
   },
@@ -66,9 +60,9 @@ export const ACCOUNT_LINKS: AccountLink[] = [
 export const FOOTER_QUICK_LINKS: NavLink[] = [
   { label: "Home", href: "/" },
   { label: "Explore Studios", href: "/studios" },
-  { label: "How It Works", href: "/how-it-works" },
-  { label: "About Us", href: "/about" },
-  { label: "List Your Studio", href: "/studios/new" },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "About Us", href: "/#about" },
+  { label: "List Your Studio", href: "/add-studio" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -155,10 +149,10 @@ export const FOOTER_CATEGORIES: NavLink[] = STUDIO_CATEGORIES.map(
 );
 
 export const FOOTER_HOST_LINKS: NavLink[] = [
-  { label: "Become a Host", href: "/become-a-host" },
-  { label: "Host Dashboard", href: "/dashboard" },
-  { label: "Pricing & Payouts", href: "/become-a-host#payouts" },
-  { label: "Host Protection", href: "/become-a-host#protection" },
+  { label: "List Your Studio", href: "/add-studio" },
+  { label: "My Studio Listings", href: "/my-listings" },
+  { label: "My Bookings", href: "/my-bookings" },
+  { label: "Explore Studios", href: "/studios" },
 ];
 
 export const FOOTER_SUPPORT_LINKS: NavLink[] = [

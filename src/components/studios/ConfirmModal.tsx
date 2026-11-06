@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-import { CloseIcon, SearchIcon, Spinner } from "@/components/icons";
+import { Spinner } from "@/components/auth/AuthFields";
+import { CloseIcon } from "@/components/icons";
 
 /**
  * Shared confirmation dialog — behind "Delete" on /my-listings and
@@ -25,8 +26,6 @@ export function ConfirmModal({
   onConfirm: () => void;
   onCancel: () => void;
 }) {
-  const [mounted, setMounted] = useState(false);
-
   // Keep the dialog in the tree one tick longer so the exit path can be
   // animated later; for now it simply guards Escape handling on mass gutters.
   useEffect(() => {
@@ -60,7 +59,6 @@ export function ConfirmModal({
       <div className="menu-in relative w-full max-w-md rounded-3xl border border-ink-950/10 bg-white p-6 shadow-[0_48px_90px_-40px_rgba(11,11,15,0.75)]">
         <div className="flex items-start gap-4">
           <span className="grid size-11 shrink-0 place-items-center rounded-2xl bg-rose-100 text-rose-600">
-            <SearchIcon className="hidden" />
             <span className="text-[20px] font-black leading-none">!</span>
           </span>
           <div className="min-w-0">

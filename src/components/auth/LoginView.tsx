@@ -19,12 +19,33 @@ type FieldErrors = { email?: string; password?: string };
 const EMAIL_PATTERN = /^\S+@\S+\.\S+$/;
 
 /**
+ * Only allow same-site return paths (`/my-listings`, `/studios/x?y#z`…)
+ * so a tampered `?next=` can never bounce members off-site.
+ */
+function safeNextPath(raw: string | null): string | null {
+  if (!raw) return null;
+  if (!raw.startsWith("/") || raw.startsWith("//")) return null;
+  return raw;
+}
+
+/**
+ * Read `?next=` straight from the URL when it is actually needed (form
+ * submit, OAuth start, redirect). `window` only exists on the client, so
+ * this stays out of render — no state, no effect, no Suspense wrapper.
+ */
+function currentNextPath(): string | null {
+  if (typeof window === "undefined") return null;
+  return safeNextPath(new URLSearchParams(window.location.search).get("next"));
+}
+
+/**
  * Login form.
  *
  *  · validates before hitting MongoDB and mirrors failures into the card
  *    (FormAlert) *and* a Sonner toast
- *  · success → home page, where the navbar/hero pick up the session
- *  · Google → Better Auth's OAuth redirect, back to the home page
+ *  · success → the `?next=` path PrivateRoute sent us from (or home), where
+ *    the navbar/hero pick up the session
+ *  · Google → Better Auth's OAuth redirect, back to the same target
  */
 export function LoginView() {
   const router = useRouter();
@@ -36,9 +57,10 @@ export function LoginView() {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState<"form" | "google" | null>(null);
 
-  // Already signed in? Send the user home instead of showing the form.
+  // Already signed in? Send the visitor to their return path instead of
+  // showing the form again.
   useEffect(() => {
-    if (!isPending && isAuthenticated) router.replace("/");
+    if (!isPending && isAuthenticated) router.replace(currentNextPath() ?? "/");
   }, [isPending, isAuthenticated, router]);
 
   function validate(): FieldErrors {
@@ -81,7 +103,7 @@ export function LoginView() {
       return;
     }
 
-    router.push("/");
+    router.push(currentNextPath() ?? "/");
   }
 
   async function onGoogle() {
@@ -89,13 +111,13 @@ export function LoginView() {
     setError(null);
     setBusy("google");
 
-    const result = await signInWithGoogle();
+    const result = await signInWithGoogle(currentNextPath() ?? "/");
     if (!result.ok) {
       setBusy(null);
       setError(result.error);
       toast.error("Google sign-in failed", { description: result.error });
     }
-    // On success the browser navigates to Google, then back to the home page.
+    // On success the browser navigates to Google, then back to `?next=`.
   }
 
   function onForgotPassword() {

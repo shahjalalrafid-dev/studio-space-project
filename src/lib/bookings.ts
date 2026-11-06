@@ -1,4 +1,4 @@
-import type { Document, ObjectId } from "mongodb";
+import { ObjectId, type Document } from "mongodb";
 
 import { getDb } from "@/lib/mongo";
 

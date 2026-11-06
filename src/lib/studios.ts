@@ -1,5 +1,4 @@
 import {
-  Collection,
   Document,
   ObjectId,
   type InsertOneResult,
@@ -161,21 +160,43 @@ export async function getFeaturedStudios(limit = 6): Promise<Studio[]> {
   }
 }
 
-/** Everything (optionally one category), for the /studios listing. */
+/** Everything (optionally one category + free-text search), for /studios. */
 export async function getStudios(options?: {
   category?: string;
   limit?: number;
   sort?: "rating" | "newest";
+  /** Free-text match on title, address, category or amenity tags. */
+  search?: string;
 }): Promise<Studio[]> {
   const category = options?.category?.trim();
   const limit = options?.limit ?? 48;
+  const search = options?.search?.trim();
 
   try {
     const sort: Sort =
       options?.sort === "newest" ? { createdAt: -1 } : { rating: -1, reviews: -1 };
 
+    const filter: Record<string, unknown> = {};
+    if (category) filter.category = category;
+
+    if (search) {
+      // Escape the user's input so it can't be read as a regex operator.
+      const safe = search.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const pattern = { $regex: safe, $options: "i" };
+      filter.$or = [
+        { title: pattern },
+        { address: pattern },
+        { city: pattern },
+        { area: pattern },
+        { category: pattern },
+        { tags: pattern },
+        { amenities: pattern },
+        { description: pattern },
+      ];
+    }
+
     const docs = await collection()
-      .find(category ? { category } : {})
+      .find(filter)
       .sort(sort)
       .limit(limit)
       .toArray();

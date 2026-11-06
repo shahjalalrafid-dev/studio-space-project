@@ -42,6 +42,7 @@ const STEPS = [
 export function BookingSteps() {
   return (
     <section
+      id="how-it-works"
       aria-labelledby="booking-steps-heading"
       className="relative isolate overflow-hidden bg-paper-warm py-16 sm:py-20 lg:py-24"
     >

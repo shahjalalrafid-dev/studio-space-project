@@ -10,8 +10,20 @@ export const metadata: Metadata = {
     "Create a free StudioSpace account to book photography studios, sound stages and podcast suites by the hour.",
 };
 
+type RegisterPageProps = {
+  searchParams: Promise<{ next?: string | string[] | undefined }>;
+};
+
 /** Public registration route — creates the user in MongoDB Atlas. */
-export default function RegisterPage() {
+export default async function RegisterPage({ searchParams }: RegisterPageProps) {
+  const query = await searchParams;
+  const rawNext = typeof query.next === "string" ? query.next : "";
+  const next =
+    rawNext && rawNext.startsWith("/") && !rawNext.startsWith("//")
+      ? rawNext
+      : null;
+  const loginHref = next ? `/login?next=${encodeURIComponent(next)}` : "/login";
+
   return (
     <AuthShell
       eyebrow="Join the marketplace"
@@ -32,7 +44,7 @@ export default function RegisterPage() {
         <>
           Already have an account?{" "}
           <Link
-            href="/login"
+            href={loginHref}
             className="font-semibold text-ink-950 underline decoration-spotlight decoration-[3px] underline-offset-4 transition-colors hover:text-spotlight-deep"
           >
             Log in

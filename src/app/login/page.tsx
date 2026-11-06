@@ -10,8 +10,20 @@ export const metadata: Metadata = {
     "Log in to StudioSpace to manage your studio bookings, saved spaces and host dashboard.",
 };
 
+type LoginPageProps = {
+  searchParams: Promise<{ next?: string | string[] | undefined }>;
+};
+
 /** Public login route — Better Auth talks to MongoDB through `/api/auth`. */
-export default function LoginPage() {
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const query = await searchParams;
+  const rawNext = typeof query.next === "string" ? query.next : "";
+  const next =
+    rawNext && rawNext.startsWith("/") && !rawNext.startsWith("//")
+      ? rawNext
+      : null;
+  const registerHref = next ? `/register?next=${encodeURIComponent(next)}` : "/register";
+
   return (
     <AuthShell
       eyebrow="Member access"
@@ -32,7 +44,7 @@ export default function LoginPage() {
         <>
           New to StudioSpace?{" "}
           <Link
-            href="/register"
+            href={registerHref}
             className="font-semibold text-ink-950 underline decoration-spotlight decoration-[3px] underline-offset-4 transition-colors hover:text-spotlight-deep"
           >
             Create an account

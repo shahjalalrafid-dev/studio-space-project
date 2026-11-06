@@ -43,6 +43,7 @@ const ASSURANCES = [
 export function HostGuarantee() {
   return (
     <section
+      id="about"
       aria-labelledby="guarantee-heading"
       className="relative isolate overflow-hidden bg-ink-950 py-16 text-white sm:py-20 lg:py-28"
     >

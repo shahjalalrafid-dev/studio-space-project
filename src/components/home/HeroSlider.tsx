@@ -180,8 +180,8 @@ export function HeroSlider() {
                         <ArrowRightIcon className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
                       </Link>
                       <Link
-                        href="/studios"
-                        className="inline-flex h-12 items-center rounded-full border border-white/25 bg-white/[0.06] px-6 text-[15.5px] font-semibold text-white backdrop-blur transition-colors hover:border-white/45 hover:bg-white/[0.14] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spotlight"
+                        href="/add-studio"
+                        className="inline-flex h-12 items-center gap-2 rounded-full border border-white/25 bg-white/[0.06] px-6 text-[15.5px] font-semibold text-white backdrop-blur transition-colors hover:border-white/45 hover:bg-white/[0.14] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-spotlight"
                       >
                         Host Your Space
                       </Link>

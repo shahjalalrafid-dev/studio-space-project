@@ -54,7 +54,7 @@ export function Navbar() {
             <span className="truncate">{SITE.ribbon}</span>
           </p>
           <Link
-            href="/studios/new"
+            href="/add-studio"
             className="group flex shrink-0 items-center gap-1.5 font-medium text-white transition-colors hover:text-spotlight"
           >
             Become a host
@@ -128,7 +128,7 @@ export function Navbar() {
             ) : isAuthenticated ? (
               <>
                 <Link
-                  href="/studios/new"
+                  href="/add-studio"
                   className="hidden h-10 items-center rounded-full border border-spotlight/45 bg-spotlight/10 px-4 text-[15px] font-semibold text-ink-900 transition-colors hover:bg-spotlight/20 sm:inline-flex"
                 >
                   List your studio

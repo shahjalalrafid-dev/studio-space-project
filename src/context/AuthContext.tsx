@@ -65,7 +65,7 @@ type AuthContextValue = {
   signIn: (values: Credentials) => Promise<AuthResult>;
   signUp: (values: Registration) => Promise<AuthResult>;
   /** Starts the Google OAuth flow; the browser navigates away on success. */
-  signInWithGoogle: () => Promise<AuthResult>;
+  signInWithGoogle: (callbackURL?: string) => Promise<AuthResult>;
   signOut: () => Promise<void>;
 };
 
@@ -136,11 +136,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signInWithGoogle = useCallback<AuthContextValue["signInWithGoogle"]>(
-    async () => {
+    async (callbackURL = "/") => {
       const { error } = await authClient.signIn.social({
         provider: "google",
-        callbackURL: "/",
-        newUserCallbackURL: "/",
+        callbackURL,
+        newUserCallbackURL: callbackURL,
       });
 
       if (error) return { ok: false, error: readAuthError(error) };
